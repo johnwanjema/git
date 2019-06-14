@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form #gitform='ngForm' class="form-search">
+        <div class="form-group">
+          <p>Search User</p>
+          <input type="text" class="form-control" placeholder="search User" [(ngModel)]="username" name="username"
+            (keyup)="findProfile();getprofilerepo(username)">
+
+        </div>
+      </form>
+      <div class='row'>
+        <div class="col-md-6">
+          <div *ngIf="user">
+            <p>{{user.name}}</p>
+            <p><a href="{{user.html_url}}" target="blank">{{user.login}}</a></p>
+            <p>{{user.company}}</p>
+          </div>
+          <img src="{{user.avatar_url}}" width="200px" height="200px" class="img-circle img-responsive"
+            alt="user-image">
+          <p>{{user.email}}</p>
+          <hr>
+          <div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <span class="label label-primary" *ngIf="user.following"> Following {{user.following}} </span>
+            <span class="label label-primary" *ngIf="user.followers"> Followers {{user.followers}} </span><br>
+            <span class="label label-primary"> Repositories {{user.public_repos}} </span>
+
+          </p>
+          <p>{{user.bio}}</p>
+          <p>{{user.blog}}</p>
+          <p>{{user.hireable}}</p>
+          <p>{{user.location}}</p>
+          <p><a href="{{user.html_url}}" class="btn btn-success" target="blank">View in Github</a></p>
+        </div>
+
+
+        <div class="card-body" *ngFor='let repo of repos'>
+
+          <h4> <a href="{{repo.html_url}} " target="_blank">{{repo.name}}
+
+            </a>
+          </h4>
+          <p>{{repo.description}}</p>
+          <p>{{repo.url}}</p>
+          <hr>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col">
+
+      <form #gitform='ngForm' class="form-search">
+        <div class="form-group">
+          <p>Search Repository</p>
+          <input type="text" class="form-control" placeholder="Search for repos here" #gitsearchrepo
+            (keyup)="findrepo(gitsearchrepo)">
+
+        </div>
+      </form>
+
+      <div class="card-body" *ngFor='let repository of repositories'>
+        <h4> {{repository.name}}
+        </h4>
+        <!-- <p>qwertytrtrtrtrrxcv{{repository.description}}</p> -->
+        <p> qwresrdyktgghcyrvfbgcrudtlbl</p>
+        <p>waerdycvk ufyobgnkj{{repository.url}}</p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
